@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Search Results</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Search Results</h1>
+  </header>
+  <main>
+    <p>Loading videos for "<span id="query"></span>"...</p>
+    <iframe id="duckFrame" frameborder="0" sandbox="allow-scripts allow-same-origin"></iframe>
+  </main>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q') || '';
+    document.getElementById('query').textContent = decodeURIComponent(q);
+
+    const iframe = document.getElementById('duckFrame');
+    // Proxy through our Netlify function
+    iframe.src = `/proxy?url=${encodeURIComponent('q=' + q + '&iax=videos&ia=videos')}`;
+    iframe.style.width = '100%';
+    iframe.style.height = '80vh';
+  </script>
+</body>
+</html>

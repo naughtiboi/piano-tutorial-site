@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Piano Tutorials</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Piano Tutorials</h1>
+  </header>
+  <main>
+    <form id="searchForm">
+      <input type="text" id="searchInput" placeholder="Search for video tutorials..." required />
+      <button type="submit">Search</button>
+    </form>
+  </main>
+  <script>
+    document.getElementById("searchForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const query = encodeURIComponent(document.getElementById("searchInput").value.trim());
+      window.location.href = `results.html?q=${query}`;
+    });
+  </script>
+</body>
+</html>
